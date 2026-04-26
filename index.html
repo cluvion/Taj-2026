@@ -67,8 +67,8 @@ nav.scrolled{background:rgba(6,7,10,.94);backdrop-filter:blur(20px);border-botto
 .hero-eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;gap:16px;opacity:0;animation:fadeUp .8s 2.3s ease forwards;}
 .hero-eyebrow-line{display:block;width:0;height:1px;background:var(--gold);animation:lineGrow .8s 2.3s ease forwards;}
 @keyframes lineGrow{to{width:48px}}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(58px,9.5vw,136px);font-weight:400;line-height:.9;letter-spacing:-.02em;margin-bottom:28px;}
-.hero h1 .ln{display:block;overflow:hidden;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(44px,7.5vw,116px);font-weight:400;line-height:1.08;letter-spacing:-.02em;margin-bottom:28px;}
+.hero h1 .ln{display:block;overflow:visible;}
 .hero h1 .ln span{display:block;transform:translateY(110%);animation:slideUp .9s ease forwards;}
 .hero h1 .ln:nth-child(1) span{animation-delay:2.45s;}
 .hero h1 .ln:nth-child(2) span{animation-delay:2.6s;color:var(--gold);font-style:italic;}
@@ -222,15 +222,16 @@ table.pt.lk tr:hover td{background:rgba(201,169,110,.04);}
 .inc-item:nth-last-child(-n+2){border-bottom:none;}
 .inc-item::before{content:'◆';font-size:6px;color:var(--gold);flex-shrink:0;opacity:.55;}
 
-/* KPI CARDS */
-.kcard{background:rgba(255,255,255,.02);border:1px solid rgba(201,169,110,.1);border-radius:4px;overflow:hidden;}
-.kcard-hd{padding:18px 22px;border-bottom:1px solid rgba(201,169,110,.08);background:rgba(201,169,110,.03);}
+/* KPI CARDS -- fixed for light bg */
+.kcard{background:var(--white);border:1px solid rgba(201,169,110,.28);border-radius:4px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.07);transition:transform .3s,box-shadow .3s;}
+.kcard:hover{transform:translateY(-4px);box-shadow:0 14px 44px rgba(0,0,0,.12);}
+.kcard-hd{padding:18px 22px;border-bottom:1px solid rgba(201,169,110,.22);background:rgba(201,169,110,.08);}
 .kcard-hd .ey{margin:0;}
-.krow{display:flex;justify-content:space-between;align-items:center;padding:11px 22px;border-bottom:1px solid rgba(255,255,255,.03);font-size:13px;}
+.krow{display:flex;justify-content:space-between;align-items:center;padding:12px 22px;border-bottom:1px solid rgba(6,7,10,.06);font-size:13px;}
 .krow:last-child{border-bottom:none;}
-.krow:hover{background:rgba(201,169,110,.03);}
-.kname{color:rgba(255,255,255,.58);}
-.kval{font-family:'Space Mono',monospace;font-size:10px;color:var(--gold);}
+.krow:hover{background:rgba(201,169,110,.06);}
+.kname{color:rgba(6,7,10,.68);font-weight:400;}
+.kval{font-family:'Space Mono',monospace;font-size:10px;color:var(--gold);font-weight:700;}
 
 /* CADENCE */
 .cad-wrap{border:1px solid var(--rule);border-radius:4px;overflow:hidden;}
@@ -287,21 +288,116 @@ footer{background:var(--obsidian);border-top:1px solid var(--rule);padding:36px 
 .info-box h4.ey{margin-top:0;}
 .info-box p{font-size:13px;color:rgba(255,255,255,.52);margin:0;}
 
-/* RESPONSIVE */
-@media(max-width:960px){
-  .sec{padding:72px 28px;}
-  .hero-inner{padding:0 28px 56px;}
-  nav{padding:0 22px;}
+/* RESPONSIVE - TABLET */
+@media(max-width:1024px){
+  nav{padding:0 32px;}
+  .nav-links{gap:18px;}
+  .nav-links a{font-size:8px;}
+  .sec{padding:88px 48px;}
+  .hero-inner{padding:0 48px 72px;}
+  .g3{grid-template-columns:1fr 1fr;}
+  .g4{grid-template-columns:1fr 1fr;}
+}
+
+/* RESPONSIVE - MOBILE */
+@media(max-width:768px){
+  html{cursor:auto;}
+  #cursor,#cursor-ring{display:none;}
+  body{font-size:14px;}
+
+  /* NAV mobile */
+  nav{padding:0 20px;height:56px;}
   .nav-links{display:none;}
-  .g2,.g3,.g4,.m-grid,.price-boxes,.inc-grid{grid-template-columns:1fr;}
-  .camps-wrap{margin:0 -28px;padding:0 28px;}
-  footer{flex-direction:column;gap:14px;text-align:center;padding:28px;}
-  .hero-stats{flex-direction:column;gap:20px;}
-  .hstat{border-right:none;padding-right:0;margin-right:0;border-bottom:1px solid var(--rule);padding-bottom:20px;}
-  .hstat:last-child{border-bottom:none;padding-bottom:0;}
-  .timeline{padding-left:40px;}
-  .m-dot{left:-35px;}
-  .div-art{padding:24px 28px;}
+  .nav-logo{font-size:15px;}
+
+  /* HERO mobile */
+  .hero{min-height:100svh;}
+  .hero-inner{padding:0 20px 48px;max-width:100%;}
+  .hero-bg-word{font-size:clamp(80px,28vw,160px);right:-10px;}
+  .hero-eyebrow{font-size:8px;letter-spacing:.16em;margin-bottom:18px;flex-wrap:wrap;}
+  .hero h1{font-size:clamp(42px,11vw,72px);line-height:1.05;letter-spacing:-.01em;margin-bottom:18px;}
+  .hero-desc{font-size:13px;max-width:100%;}
+  .hero-stats{flex-direction:column;gap:0;margin-top:36px;padding-top:28px;}
+  .hstat{flex:none;width:100%;border-right:none;padding-right:0;margin-right:0;
+    border-bottom:1px solid var(--rule);padding-bottom:18px;margin-bottom:18px;
+    display:flex;align-items:center;justify-content:space-between;}
+  .hstat:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .hstat-n{font-size:28px;}
+  .hstat-l{font-size:9px;}
+
+  /* SECTIONS mobile */
+  .sec{padding:64px 20px;}
+  h2.disp{font-size:clamp(32px,9vw,52px);margin-bottom:36px;}
+  h3.sh{font-size:20px;margin-top:32px;}
+
+  /* GRIDS mobile */
+  .g2,.g3,.g4{grid-template-columns:1fr;gap:16px;}
+
+  /* CARDS mobile */
+  .card{padding:24px;}
+  .card-n{font-size:44px;}
+  .card-lk{padding:24px;}
+
+  /* PILLAR mobile */
+  .pillar{grid-template-columns:40px 1fr;gap:16px;padding:22px 0;}
+  .p-letter{font-size:36px;}
+  .p-title{font-size:18px;}
+
+  /* FUNNEL mobile */
+  .f-body{padding:14px 18px;}
+  .f-title{font-size:14px;}
+
+  /* CAMPAIGNS mobile */
+  .camps-wrap{margin:0 -20px;padding:0 20px;}
+  .ccamp{width:280px;padding:28px 24px;}
+
+  /* TIMELINE mobile */
+  .timeline{padding-left:32px;}
+  .timeline::before{left:9px;}
+  .m-dot{left:-27px;width:11px;height:11px;}
+  .m-head{font-size:20px;}
+  .m-grid{grid-template-columns:1fr;}
+  .m-cell{padding:16px 18px;}
+
+  /* CADENCE mobile */
+  .cad-wrap{overflow-x:auto;}
+  .cad-header,.cad-row{grid-template-columns:100px 1fr 1fr;min-width:600px;}
+
+  /* TABLES mobile */
+  .tw{overflow-x:auto;}
+
+  /* PRICING mobile */
+  .price-boxes{grid-template-columns:1fr;gap:12px;}
+  .pbox{padding:28px 20px;}
+  .pb-amt{font-size:36px;}
+  .inc-grid{grid-template-columns:1fr;}
+
+  /* CLOSING mobile */
+  .closing{padding:80px 20px;}
+  .closing h2{font-size:clamp(36px,10vw,60px);}
+
+  /* FOOTER mobile */
+  footer{flex-direction:column;gap:12px;text-align:center;padding:28px 20px;}
+
+  /* DIVIDERS mobile */
+  .div-art{padding:20px 20px;}
+
+  /* COMPLIANCE mobile */
+  .comp-panel{padding:20px;}
+
+  /* INFO BOX mobile */
+  .info-box{padding:18px 20px;}
+
+  /* PRICING includes mobile */
+  .p-includes{padding:22px 20px;}
+}
+
+/* VERY SMALL mobile */
+@media(max-width:380px){
+  .hero h1{font-size:38px;}
+  h2.disp{font-size:30px;}
+  .sec{padding:52px 16px;}
+  .hero-inner{padding:0 16px 40px;}
 }
 </style>
 </head>
@@ -316,7 +412,7 @@ footer{background:var(--obsidian);border-top:1px solid var(--rule);padding:36px 
 <div id="loader">
   <div class="ld-name">Dr. <em>Taj</em></div>
   <div class="ld-line"></div>
-  <div class="ld-sub">TRIA Medical · Bangkok · Marketing Strategy 2026</div>
+  <div class="ld-sub">TRIA Medical · Bangkok · Marketing Strategy 2025</div>
   <div class="ld-bar"><div class="ld-bar-fill"></div></div>
 </div>
 
@@ -342,11 +438,10 @@ footer{background:var(--obsidian);border-top:1px solid var(--rule);padding:36px 
   <canvas id="pcanvas"></canvas>
   <div class="hero-bg-word">Taj</div>
   <div class="hero-inner">
-    <div class="hero-eyebrow"><span class="hero-eyebrow-line"></span>Confidential Strategic Marketing Plan · 2026–2026</div>
+    <div class="hero-eyebrow"><span class="hero-eyebrow-line"></span>Confidential Strategic Marketing Plan · 2025–2026</div>
     <h1>
       <span class="ln"><span>Dr. Taj.</span></span>
-      </h1>
-    <h1>
+      <!-- <span class="ln"><span></span></span> -->
       <span class="ln"><span>TRIA Bangkok.</span></span>
     </h1>
     <p class="hero-desc">6-Month Premium Personal Brand &amp; International Lead Generation Strategy for Hair Restoration — Australia &amp; Singapore</p>
@@ -924,7 +1019,7 @@ footer{background:var(--obsidian);border-top:1px solid var(--rule);padding:36px 
     <h2>Building Bangkok's Most<br><em>Trusted Surgeon</em><br>for the World</h2>
     <p>This plan is built to make Dr. Taj famous for the right reasons — with the right audience, in the right markets. Premium patients don't choose the cheapest option. They choose the surgeon they trust most. This plan makes Dr. Taj that surgeon.</p>
     <div class="closing-q">"A hair transplant should not look like a hair transplant."</div>
-    <div class="closing-mark">Confidential · Dr. Aritaj Aiumtrakul · TRIA Medical · Bangkok · 2026–2026</div>
+    <div class="closing-mark">Confidential · Dr. Aritaj Aiumtrakul · TRIA Medical · Bangkok · 2025–2026</div>
   </div>
 </div>
 
